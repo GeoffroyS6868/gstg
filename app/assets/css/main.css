@@ -1,0 +1,73 @@
+@import "tailwindcss";
+@import "@nuxt/ui";
+
+::-webkit-scrollbar {
+  width: 10px;
+  transition-duration: 500ms;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--background-color-default);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-neutral-300);
+  transition-duration: 500ms;
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-neutral-400);
+  transition-duration: 500ms;
+}
+
+input[type="number"] {
+  -webkit-appearance: textfield;
+  -moz-appearance: textfield;
+  appearance: textfield;
+}
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+}
+
+@theme {
+  --font-sans: "Inter";
+}
+
+:root {
+  --ui-bg: var(--color-zinc-50);
+  --ui-radius: 0rem;
+}
+
+body {
+  position: relative;
+  min-height: 100vh;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.25;
+  background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><filter id="noise"><feTurbulence type="fractalNoise" baseFrequency="0.5" numOctaves="4"/></filter><rect width="100" height="100" filter="url(%23noise)"/></svg>');
+}
+
+.dark body::before {
+  opacity: 0.05;
+}
+
+.dark {
+  --ui-bg: var(--color-zinc-950);
+}
+
+.bg-stripes {
+  @apply w-full [background-size:6px_6px];
+  @apply dark:[background-image:linear-gradient(-45deg,var(--color-neutral-700)_12.50%,transparent_12.50%,transparent_50%,var(--color-neutral-700)_50%,var(--color-neutral-700)_62.50%,transparent_62.50%,transparent_100%)];
+  @apply not-dark:[background-image:linear-gradient(-45deg,var(--color-neutral-200)_12.50%,transparent_12.50%,transparent_50%,var(--color-neutral-200)_50%,var(--color-neutral-200)_62.50%,transparent_62.50%,transparent_100%)];
+}

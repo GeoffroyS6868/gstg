@@ -1,3 +1,7 @@
 <template>
-  <div>Gstg</div>
+  <UApp>
+    <NuxtLayout>
+      <NuxtPage />
+    </NuxtLayout>
+  </UApp>
 </template>
