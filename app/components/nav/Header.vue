@@ -1,8 +1,10 @@
 <template>
   <header
-    class="w-full flex flex-row items-center justify-center fixed top-0 left-0 right-0 z-50 border-b border-default px-16"
+    class="w-full flex flex-row items-center justify-center fixed top-0 left-0 right-0 z-50 border-b border-default px-4 md:px-8 lg:px-16"
   >
-    <div class="w-full flex justify-center border-x border-default bg-default">
+    <div
+      class="w-full flex justify-center border-x border-default bg-default px-4"
+    >
       <nav class="w-full max-w-5xl flex justify-between items-center h-16">
         <div class="flex flex-row gap-3">
           <NuxtLink

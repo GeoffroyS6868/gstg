@@ -8,7 +8,7 @@ const { label, to } = defineProps<{
 <template>
   <NuxtLink
     :to="to"
-    class="flex flex-row items-center p-1 rounded-[6px] text-highlighted font-light hover:bg-accented/50 duration-200 transition-bg"
+    class="flex flex-row items-center py-1 px-2 text-highlighted font-light hover:bg-accented/50 duration-200 transition-bg"
   >
     <template v-if="label">{{ label }}</template>
     <template v-else><slot /></template>

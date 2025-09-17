@@ -1,25 +1,13 @@
 <template>
-  <div class="w-full flex flex-col items-center border-x border-default">
+  <div
+    class="w-full flex flex-col items-center border-x border-default py-16 px-4"
+  >
     <Hero />
     <UiSeparator />
-    <div class="w-full max-w-5xl flex flex-col">
-      <Skills />
-    </div>
+    <SkillsSection />
     <UiSeparator />
-    <div class="w-full max-w-5xl flex flex-col">
-      <Experiences />
-    </div>
+    <ExperiencesSection />
     <UiSeparator />
-    <div class="w-full max-w-5xl flex flex-col">
-      <Projects />
-    </div>
-    <UiSeparator />
-    <div class="w-full max-w-5xl flex flex-col">
-      <Projects />
-    </div>
-    <UiSeparator />
-    <div class="w-full max-w-5xl flex flex-col">
-      <Projects />
-    </div>
+    <Projects />
   </div>
 </template>

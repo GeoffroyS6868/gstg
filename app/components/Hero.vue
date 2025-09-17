@@ -1,11 +1,12 @@
 <template>
   <section
-    class="flex flex-col items-center justify-center text-center gap-4 py-32"
+    class="flex flex-col items-center justify-center text-center gap-4 pt-48 pb-64"
   >
-    <h1 class="text-4xl font-bold tracking-tight">Hi, I'm Geoffroy Stanger</h1>
+    <h1 class="text-4xl font-bold tracking-tight">
+      {{ $t("components.hero.title") }}
+    </h1>
     <p class="max-w-2xl">
-      Software Engineer passionate about building modern web applications, SaaS
-      products, and crafting effective UX/UI experiences.
+      {{ $t("components.hero.subtitle") }}
     </p>
   </section>
 </template>

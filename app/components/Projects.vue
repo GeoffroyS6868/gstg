@@ -1,30 +1,55 @@
-<script lang="ts" setup></script>
-
 <template>
-  <section class="flex flex-col justify-center">
-    <h2 class="text-2xl font-semibold mb-6">Selected Projects</h2>
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-      <UCard>
+  <section class="w-full max-w-5xl flex flex-col py-32">
+    <h2 class="text-2xl font-semibold mb-6">{{ $t("projects.title") }}</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <UCard :ui="{ root: 'flex flex-col', body: 'flex flex-col flex-1' }">
         <template #header>
-          <span class="font-bold">Project Alpha</span>
+          <span class="font-bold">{{ $t("projects.sarpbc.name") }}</span>
+          <span class="text-xs text-dimmed ml-2">
+            {{ $t("projects.sarpbc.year") }}
+          </span>
         </template>
-        <p class="text-neutral-500">
-          A modern dashboard for tracking productivity. UI/UX focused, built
-          with Nuxt and Tailwind.
-        </p>
+        <div>
+          <p>
+            {{ $t("projects.sarpbc.description") }}
+          </p>
+        </div>
         <template #footer>
-          <ULink to="#" class="text-primary-600">View Details</ULink>
+          <div class="flex-none">
+            <UButton
+              to="https://sarpbc.org"
+              target="_blank"
+              color="primary"
+              variant="ghost"
+              trailing-icon="i-fluent-arrow-up-right-24-regular"
+              :label="$t('projects.sarpbc.view')"
+            />
+          </div>
         </template>
       </UCard>
-      <UCard>
+      <UCard :ui="{ root: 'flex flex-col', body: 'flex flex-col flex-1' }">
         <template #header>
-          <span class="font-bold">Beta Portfolio</span>
+          <span class="font-bold">{{ $t("projects.tissuco.name") }}</span>
+          <span class="text-xs text-dimmed ml-2">
+            {{ $t("projects.tissuco.year") }}
+          </span>
         </template>
-        <p class="text-neutral-500">
-          Personal portfolio template with minimal design and smooth animations.
-        </p>
+        <div>
+          <p>
+            {{ $t("projects.tissuco.description") }}
+          </p>
+        </div>
         <template #footer>
-          <ULink to="#" class="text-primary-600">View Details</ULink>
+          <div class="flex-none">
+            <UButton
+              to="https://tissuco.fr"
+              target="_blank"
+              color="primary"
+              variant="ghost"
+              trailing-icon="i-fluent-arrow-up-right-24-regular"
+              :label="$t('projects.tissuco.view')"
+            />
+          </div>
         </template>
       </UCard>
     </div>
