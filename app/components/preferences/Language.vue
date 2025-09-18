@@ -27,12 +27,21 @@ async function handleLanguageChange(
 </script>
 
 <template>
-  <USelect
-    v-model="selectedLanguage"
-    value-key="value"
-    label-key="label"
-    :items="languages"
-    class="w-48"
-    @update:model-value="handleLanguageChange"
-  />
+  <UPopover>
+    <UButton :label="selectedLanguage" color="neutral" variant="ghost" />
+
+    <template #content>
+      <UButtonGroup>
+        <UButton
+          v-for="lang in languages"
+          :key="lang.value"
+          color="neutral"
+          variant="ghost"
+          :label="lang.value"
+          :value="lang.value"
+          @click="handleLanguageChange(lang.value)"
+        />
+      </UButtonGroup>
+    </template>
+  </UPopover>
 </template>

@@ -1,16 +1,22 @@
 <script setup lang="ts">
 const colorMode = useColorMode();
 
-const nextTheme = computed(() =>
-  colorMode.value === "dark" ? "light" : "dark"
-);
+const isDark = computed(() => colorMode.value === "dark");
+const nextTheme = computed(() => (isDark.value ? "light" : "dark"));
 
 const switchTheme = () => {
-  colorMode.preference = nextTheme.value;
+  if (import.meta.client) {
+    colorMode.preference = nextTheme.value;
+  }
 };
 
-const startViewTransition = (event: MouseEvent) => {
-  if (!document.startViewTransition) {
+const startViewTransition = (event?: MouseEvent) => {
+  if (!import.meta.client) {
+    switchTheme();
+    return;
+  }
+
+  if (!(document as any).startViewTransition || !event) {
     switchTheme();
     return;
   }
@@ -22,7 +28,7 @@ const startViewTransition = (event: MouseEvent) => {
     Math.max(y, window.innerHeight - y)
   );
 
-  const transition = document.startViewTransition(() => {
+  const transition = (document as any).startViewTransition(() => {
     switchTheme();
   });
 
@@ -46,26 +52,15 @@ const startViewTransition = (event: MouseEvent) => {
 </script>
 
 <template>
-  <ClientOnly>
-    <UButton
-      class="rounded-full w-fit"
-      variant="ghost"
-      color="neutral"
-      :icon="colorMode.value === 'dark' ? 'i-lucide-moon' : 'i-lucide-sun'"
-      size="md"
-      :aria-label="`Switch to ${nextTheme} mode`"
-      @click="startViewTransition"
-    />
-
-    <template #fallback>
-      <UButton
-        class="rounded-full"
-        icon="i-heroicons-moon"
-        size="md"
-        color="neutral"
-      />
-    </template>
-  </ClientOnly>
+  <UButton
+    class="w-fit"
+    variant="ghost"
+    color="neutral"
+    :icon="isDark ? 'i-lucide-moon' : 'i-lucide-sun'"
+    size="md"
+    :aria-label="`Switch to ${nextTheme} mode`"
+    @click="startViewTransition"
+  />
 </template>
 
 <style>

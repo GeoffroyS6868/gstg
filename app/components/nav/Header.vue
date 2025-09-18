@@ -18,7 +18,8 @@
             <UiLink label="Contact" :to="$localePath('/')" />
           </div>
         </div>
-        <div>
+        <div class="flex flex-row gap-3">
+          <PreferencesLanguage />
           <PreferencesColormode />
         </div>
       </nav>
