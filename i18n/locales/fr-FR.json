@@ -1,60 +1,66 @@
 {
   "components": {
     "hero": {
-      "title": "Salut, je suis Geoffroy Stanger",
-      "subtitle": "Ingénieur logiciel passionné par la création d'applications web, de SaaS et le développement d'expériences UX/UI de qualité."
+      "title": "Geoffroy Stanger",
+      "subtitle": "Développeur full-stack passionné par la création d'applications web, le développement de produits SaaS et la conception d'expériences UX/UI efficaces."
     },
     "skills": {
       "title": "Compétences",
       "databases": "Bases de données"
     },
     "experiences": {
-      "title": "Expérience",
+      "title": "Expériences",
       "gojob": {
         "role": "Ingénieur Logiciel - Gojob",
         "date": "Mars 2025 - Août 2025 · Stage",
-        "desc": "Participation à l'ensemble du flux de proposition de candidats, de l'automatisation à la page profil candidat, avec Next.js, React, Tailwind, Nest.js, Typescript, Pub/Sub et PostgreSQL. Application des méthodologies DDD et TDD."
+        "desc1": "Participation au développement de l'ensemble du flux de proposition de candidats, de l'automatisation à la page profil candidat, avec Next.js, React, Tailwind, Nest.js, Typescript, Pub/Sub et PostgreSQL.",
+        "desc2": "Application des principes de Clean Architecture, DDD et TDD pour garantir un code robuste, modulaire et testable."
       },
       "schaeffer": {
         "role": "Développeur Frontend - Schaeffer Productique",
         "date": "Septembre 2024 - Février 2025 · Stage · Temps partiel",
-        "desc": "Automatisation des tests et développement frontend avec Angular, Typescript et Cypress. Mise en place de pipelines de tests automatisés pour de nouvelles applications web d'entreprise."
+        "desc1": "Automatisation des tests et développement frontend avec Angular, Typescript et Cypress.",
+        "desc2": "Mise en place de pipelines de tests automatisés pour de nouvelles applications web d'entreprise."
       },
       "fam": {
         "role": "Développeur Full-stack - Final Advanced Materials",
         "date": "Mai 2024 - Août 2024 · Stage",
-        "desc": "Responsable de la création d'une application web interne avec Fastify, Typescript, PostgreSQL et Vue.js, destinée à collecter des données issues des demandes clients. Conception d'APIs REST et contribution à l'architecture et au déploiement de l'application avec Docker."
+        "desc1": "Responsable de la création d'une application web interne avec Fastify, Typescript, PostgreSQL et Vue.js, destinée à collecter des données issues des demandes clients.",
+        "desc2": "Conception d'APIs REST et contribution à l'architecture et au déploiement de l'application avec Docker."
       },
       "kiwi2023": {
         "role": "Développeur Go - Kiwi Backup",
         "date": "Avril 2023 - Juillet 2023 · Stage",
-        "desc": "Contribution au développement de l'application Kiwi Backup Windows en Go. Implémentation de la sauvegarde Microsoft Teams via l'API Microsoft Graph."
+        "desc1": "Contribution au développement de l'application Kiwi Backup Windows en Go.",
+        "desc2": "Implémentation de la sauvegarde Microsoft Teams via l'API Microsoft Graph."
       },
       "systancia": {
         "role": "Développeur Python - Systancia",
         "date": "Octobre 2022 - Mars 2023 · Stage · Temps partiel",
-        "desc": "Création de scripts pour automatiser l'extraction de données Linkedin avec Phantombuster et Python. Sauvegarde des leads extraits dans une base MSSQL."
+        "desc1": "Création de scripts pour automatiser l'extraction de données Linkedin avec Phantombuster et Python.",
+        "desc2": "Sauvegarde des leads extraits dans une base MSSQL."
       },
       "kiwi2021": {
         "role": "Développeur Go - Kiwi Backup",
         "date": "Août 2021 - Décembre 2021 · Stage",
-        "desc": "Développement d'outils CLI pour les administrateurs système en Go pour gérer des bases de données MongoDB. Automatisation de tâches récurrentes et amélioration du monitoring."
+        "desc1": "Développement d'outils CLI pour les administrateurs système en Go pour gérer des bases de données MongoDB.",
+        "desc2": "Automatisation de tâches récurrentes et amélioration du monitoring."
       }
-    }
-  },
-  "projects": {
-    "title": "Projets personnels",
-    "sarpbc": {
-      "name": "Sarpbc.org",
-      "year": "2025",
-      "description": "Site d'information et d'analyse de données consacré à Rocket League, développé avec Nuxt, Tailwind CSS et NestJS.",
-      "view": "Voir le site"
     },
-    "tissuco": {
-      "name": "Tissuco",
-      "year": "2025",
-      "description": "Plateforme SaaS pour aider les revendeurs d'articles de seconde main à centraliser et optimiser la gestion des stocks et des commandes, développée avec Nuxt, Tailwind CSS et NestJS.",
-      "view": "Voir le site"
+    "footer": {
+      "text": "© 2025 Geoffroy Stanger - Portfolio développé avec Nuxt & Tailwind"
+    },
+    "projects": {
+      "title": "Projets personnels",
+      "view": "Voir le site",
+      "sarpbc": {
+        "name": "Sarpbc.org",
+        "description": "Site d'information et d'analyse de données consacré à Rocket League, développé avec Nuxt, Tailwind CSS et NestJS."
+      },
+      "tissuco": {
+        "name": "Tissuco",
+        "description": "Plateforme SaaS pour aider les revendeurs d'articles de seconde main à centraliser et optimiser la gestion des stocks et des commandes, développée avec Nuxt, Tailwind CSS et NestJS."
+      }
     }
   }
 }

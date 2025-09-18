@@ -8,6 +8,8 @@
     <UiSeparator />
     <ExperiencesSection />
     <UiSeparator />
-    <Projects />
+    <ProjectsSection />
+    <UiSeparator />
+    <ContactSection />
   </div>
 </template>

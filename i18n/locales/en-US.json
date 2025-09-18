@@ -1,60 +1,66 @@
 {
   "components": {
     "hero": {
-      "title": "Hi, I'm Geoffroy Stanger",
-      "subtitle": "Software Engineer passionate about building modern web applications, SaaS products, and crafting effective UX/UI experiences."
+      "title": "Geoffroy Stanger",
+      "subtitle": "Full-stack developer passionate about building modern web applications, developing SaaS products, and creating effective UX/UI experiences."
     },
     "skills": {
       "title": "Skills",
       "databases": "Databases"
     },
     "experiences": {
-      "title": "Experience",
+      "title": "Experiences",
       "gojob": {
         "role": "Software Engineer - Gojob",
         "date": "March 2025 - August 2025 · Internship",
-        "desc": "Worked on the whole candidate proposal flow, from the automated candidate proposal to the candidate profile page using Next.js, React, Tailwind, Nest.js, Typescript, Pub/Sub, and PostgreSQL. Applied Domain-Driven Design (DDD) and Test-Driven Development (TDD) methodologies."
+        "desc1": "Worked on the whole candidate proposal flow, from the automated candidate proposal to the candidate profile page using Next.js, React, Tailwind, Nest.js, Typescript, Pub/Sub, and PostgreSQL.",
+        "desc2": "Applied the principles of Clean Architecture, DDD, and TDD to ensure robust, modular, and testable code."
       },
       "schaeffer": {
         "role": "Frontend Developer - Schaeffer Productique",
         "date": "September 2024 - February 2025 · Internship · Part-time",
-        "desc": "Focused on test automation and frontend development using Angular, Typescript, and Cypress. Automated testing pipelines for enterprise new web applications."
+        "desc1": "Focused on test automation and frontend development using Angular, Typescript, and Cypress.",
+        "desc2": "Automated testing pipelines for enterprise new web applications."
       },
       "fam": {
         "role": "Full-stack Developer - Final Advanced Materials",
         "date": "May 2024 - August 2024 · Internship",
-        "desc": "Was responsible for building an internal web application using Fastify, Typescript, PostgreSQL, and Vue.js, whose goal was to collect data from client requests. Designed REST APIs and contributed to application architecture and deployment with Docker."
+        "desc1": "Was responsible for building an internal web application using Fastify, Typescript, PostgreSQL, and Vue.js, whose goal was to collect data from client requests.",
+        "desc2": "Designed REST APIs and contributed to application architecture and deployment with Docker."
       },
       "kiwi2023": {
         "role": "Go Developer - Kiwi Backup",
         "date": "April 2023 - July 2023 · Internship",
-        "desc": "Contributed to the development of Windows desktop applications using Go. Implemented Microsoft Teams backup functionality using the Microsoft Graph API."
+        "desc1": "Contributed to the development of Windows desktop applications using Go.",
+        "desc2": "Implemented Microsoft Teams backup functionality using the Microsoft Graph API."
       },
       "systancia": {
         "role": "Python Developer - Systancia",
         "date": "October 2022 - March 2023 · Internship · Part-time",
-        "desc": "Built scripts to automate Linkedin data extraction with Phantombuster and Python. Saved the extracted leads to a MSSQL database."
+        "desc1": "Built scripts to automate Linkedin data extraction with Phantombuster and Python.",
+        "desc2": "Saved the extracted leads to a MSSQL database."
       },
       "kiwi2021": {
         "role": "Go Developer - Kiwi Backup",
         "date": "August 2021 - December 2021 · Internship",
-        "desc": "Developed CLI tools for system administrators using Go to manage MongoDB databases. Implemented automation for routine tasks and improved system monitoring."
+        "desc1": "Developed CLI tools for system administrators using Go to manage MongoDB databases.",
+        "desc2": "Implemented automation for routine tasks and improved system monitoring."
       }
-    }
-  },
-  "projects": {
-    "title": "Personal Projects",
-    "sarpbc": {
-      "name": "Sarpbc.org",
-      "year": "2025",
-      "description": "A news and data website for Rocket League esports, built with Nuxt, TailwindCSS, and NestJS.",
-      "view": "View Website"
     },
-    "tissuco": {
-      "name": "Tissuco",
-      "year": "2025",
-      "description": "A SaaS platform that helps second-hand resellers manage their inventory and orders, built with Nuxt, Tailwind CSS, and NestJS.",
-      "view": "View Website"
+    "footer": {
+      "text": "© 2025 Geoffroy Stanger - Portfolio built with Nuxt & Tailwind"
+    },
+    "projects": {
+      "title": "Personal Projects",
+      "view": "View Website",
+      "sarpbc": {
+        "name": "Sarpbc.org",
+        "description": "A news and data website for Rocket League esports, built with Nuxt, TailwindCSS, and NestJS."
+      },
+      "tissuco": {
+        "name": "Tissuco",
+        "description": "A SaaS platform that helps second-hand resellers manage their inventory and orders, built with Nuxt, Tailwind CSS, and NestJS."
+      }
     }
   }
 }

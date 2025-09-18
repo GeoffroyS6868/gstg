@@ -19,7 +19,7 @@ const skills = [
     technologies: [
       { name: "Node.js", icon: "i-logos-nodejs-icon" },
       { name: "Nest.js", icon: "i-logos-nestjs" },
-      { name: "Fastify", icon: "i-logos-fastify-icon" },
+      { name: "Fastify", icon: "i-simple-icons-fastify" },
       { name: "Express.js", icon: "i-simple-icons-express" },
     ],
   },
@@ -36,16 +36,18 @@ const skills = [
     technologies: [
       { name: "Docker", icon: "i-logos-docker-icon" },
       { name: "Git", icon: "i-logos-git-icon" },
-      { name: "GitHub Actions", icon: "i-logos-github-icon" },
+      { name: "GitHub Actions", icon: "i-mdi-github" },
     ],
   },
 ];
 </script>
 
 <template>
-  <section class="w-full max-w-5xl flex flex-col justify-center py-32 gap-8">
+  <section
+    class="w-full max-w-5xl flex flex-col justify-center py-16 md:py-32 gap-8"
+  >
     <h2 class="text-2xl font-semibold">{{ $t("components.skills.title") }}</h2>
-    <div class="flex flex-wrap gap-8">
+    <div class="flex flex-wrap gap-4 md:gap-8">
       <SkillsRow v-for="skill in skills" :key="skill.name" :skill="skill" />
     </div>
   </section>

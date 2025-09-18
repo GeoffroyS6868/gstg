@@ -7,7 +7,7 @@ const { skill } = defineProps<{
 </script>
 
 <template>
-  <div class="w-full grid grid-cols-5">
+  <div class="w-full md:grid grid-cols-5 flex flex-col">
     <h2
       class="h-12 flex flex-row col-span-2 text-3xl font-semibold items-center uppercase"
     >

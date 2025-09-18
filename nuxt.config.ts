@@ -46,5 +46,5 @@ export default defineNuxtConfig({
     },
   },
 
-  modules: ["@nuxt/ui", "motion-v/nuxt", "@nuxtjs/i18n", "v-gsap-nuxt"],
+  modules: ["@nuxt/ui", "@nuxtjs/i18n", "v-gsap-nuxt"],
 });
