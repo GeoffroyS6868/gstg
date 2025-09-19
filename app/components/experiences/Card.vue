@@ -7,9 +7,9 @@ const { title, date, lines } = defineProps<{
 </script>
 
 <template>
-  <UCard :ui="{ header: 'flex !flex-col md:!flex-row md:gap-2' }">
+  <UCard :ui="{ header: 'flex !flex-col md:!block' }">
     <template #header>
-      <span class="font-bold">
+      <span class="font-bold md:mr-2">
         {{ title }}
       </span>
       <span class="text-xs text-dimmed">{{ date }}</span>
