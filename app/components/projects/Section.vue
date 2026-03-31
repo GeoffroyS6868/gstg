@@ -1,3 +1,15 @@
+<script lang="ts" setup>
+const { locale } = useI18n();
+const tracker = "utm_source=gstg";
+
+const sarpbcUrl = computed(
+  () => `https://sarpbc.org/${locale.value}?${tracker}`
+);
+const tissucoUrl = computed(
+  () => `https://tissuco.fr/${locale.value}?${tracker}`
+);
+</script>
+
 <template>
   <section id="projects" class="w-full max-w-5xl flex flex-col py-16 md:py-32">
     <h2 class="text-2xl font-semibold mb-6">
@@ -8,13 +20,13 @@
         name="sarpbc.org"
         year="2025"
         :description="$t('components.projects.sarpbc.description')"
-        link="https://sarpbc.org"
+        :link="sarpbcUrl"
       />
       <ProjectsCard
         name="Tissuco"
         year="2025"
         :description="$t('components.projects.tissuco.description')"
-        link="https://tissuco.fr"
+        :link="tissucoUrl"
       />
     </div>
   </section>
