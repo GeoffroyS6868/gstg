@@ -1,0 +1,31 @@
+{
+  "name": "gstg",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "nuxt build",
+    "dev": "nuxt dev",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview",
+    "postinstall": "nuxt prepare",
+    "check": "ultracite check",
+    "fix": "ultracite fix",
+    "prepare": "lefthook install"
+  },
+  "dependencies": {
+    "@nuxt/ui": "4.10.0",
+    "motion-v": "2.4.0",
+    "nuxt": "4.5.2",
+    "typescript": "6.0.3",
+    "vue": "3.5.41",
+    "vue-router": "5.2.0",
+    "zod": "4.4.3"
+  },
+  "devDependencies": {
+    "lefthook": "^2.1.10",
+    "oxfmt": "^0.64.0",
+    "oxlint": "^1.79.0",
+    "ultracite": "7.10.5"
+  },
+  "packageManager": "pnpm@11.1.2"
+}
