@@ -1,5 +1,6 @@
 <script lang="ts" setup>
-const year = new Date().getFullYear();
+const { shownUntil } = useCareer();
+const year = computed(() => Math.floor(shownUntil.value / MONTHS_PER_YEAR));
 </script>
 
 <template>
@@ -17,7 +18,7 @@ const year = new Date().getFullYear();
       <header class="flex h-16 items-center justify-between">
         <NuxtLink
           to="/"
-          class="text-muted hover:text-highlighted flex items-center gap-2 font-mono text-xs transition-colors"
+          class="text-muted hover:text-highlighted flex items-center gap-2 font-mono text-xs"
         >
           <svg
             aria-hidden="true"
@@ -50,5 +51,6 @@ const year = new Date().getFullYear();
         </div>
       </footer>
     </div>
+    <Crank />
   </div>
 </template>

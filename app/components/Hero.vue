@@ -16,7 +16,7 @@
         external
         rel="noopener"
         target="_blank"
-        class="text-highlighted hover:decoration-primary underline decoration-(--ui-border-accented) underline-offset-4 transition-colors"
+        class="text-highlighted hover:decoration-primary underline decoration-(--ui-border-accented) underline-offset-4"
       >
         Join Stories</NuxtLink
       >

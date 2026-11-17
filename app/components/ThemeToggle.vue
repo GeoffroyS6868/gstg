@@ -2,17 +2,14 @@
 const colorMode = useColorMode();
 
 const isDark = computed(() => colorMode.value === "dark");
-
-const toggle = () => {
-  colorMode.preference = isDark.value ? "light" : "dark";
-};
+const { toggle } = useThemeReveal();
 </script>
 
 <template>
   <ClientOnly>
     <button
       type="button"
-      class="text-muted hover:bg-elevated hover:text-highlighted focus-visible:ring-primary/60 flex size-8 items-center justify-center rounded-md transition-colors focus-visible:ring-2 focus-visible:outline-none"
+      class="text-muted hover:bg-elevated hover:text-highlighted focus-visible:ring-primary/60 flex size-8 items-center justify-center rounded-md focus-visible:ring-2 focus-visible:outline-none"
       :aria-label="isDark ? 'Switch to light theme' : 'Switch to dark theme'"
       @click="toggle"
     >

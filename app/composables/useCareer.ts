@@ -77,7 +77,7 @@ const MONTH_LABELS = [
 ] as const;
 
 /** Months since year 0, so ranges and durations are plain integer math. */
-const toMonth = (value: YearMonth): number =>
+export const toMonth = (value: YearMonth): number =>
   Number(value.slice(0, 4)) * MONTHS_PER_YEAR + Number(value.slice(5, 7)) - 1;
 
 const formatMonth = (month: number): string => {
@@ -86,12 +86,23 @@ const formatMonth = (month: number): string => {
   return `${label} ${year}`;
 };
 
+/** A month as a dial would read it, for instance "Mar 2019". */
+export const formatYearMonth = (month: number): string =>
+  `${MONTH_LABELS[month % MONTHS_PER_YEAR] ?? ""} ${Math.floor(month / MONTHS_PER_YEAR)}`;
+
 export const useCareer = () => {
   const now = useState("career-now", () => {
     const today = new Date();
     return today.getFullYear() * MONTHS_PER_YEAR + today.getMonth();
   });
-  const active = useState<number | null>("career-active", () => null);
+  /** Key of the role pointed at in the list. */
+  const active = useState<string | null>("career-active", () => null);
+  /**
+   * Where the rewound clock stands, in fractional months; null in the present.
+   * The spiral follows it smoothly; everything else reads the whole month.
+   */
+  const cursor = useState<number | null>("career-cursor", () => null);
+  const shownUntil = computed(() => Math.round(cursor.value ?? now.value));
 
   const rows = computed(() =>
     experiences.map((experience) => {
@@ -103,7 +114,7 @@ export const useCareer = () => {
         from,
         isCurrent: experience.end === null,
         key: `${experience.company}-${experience.start}`,
-        meta: `${formatMonth(from)} → ${until}`,
+        period: { from: formatMonth(from), until },
         to,
       };
     })
@@ -111,5 +122,5 @@ export const useCareer = () => {
 
   const first = computed(() => Math.min(...rows.value.map((row) => row.from)));
 
-  return { active, first, now, rows };
+  return { active, cursor, first, now, rows, shownUntil };
 };

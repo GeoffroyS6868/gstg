@@ -32,7 +32,7 @@ const projects: Project[] = [
         :title="project.name"
         :description="project.description"
         :dot-class="project.dotClass"
-        :meta="`${project.domain} ↗`"
+        :meta="project.domain"
       />
     </ul>
   </Frame>

@@ -14,23 +14,18 @@ const links = [
       external
       rel="noopener"
       target="_blank"
-      class="group text-muted hover:text-highlighted focus-visible:text-highlighted inline-flex items-baseline transition-colors"
+      class="group text-muted hover:text-highlighted focus-visible:text-highlighted inline-flex items-baseline outline-none"
     >
-      <span aria-hidden="true" class="text-dimmed">(</span>
-      <span class="relative inline-flex overflow-hidden px-px">
-        <span
-          class="transition-transform duration-300 ease-out group-hover:-translate-y-full motion-reduce:transition-none"
-        >
-          {{ link.label }}
-        </span>
-        <span
-          aria-hidden="true"
-          class="absolute inset-x-px top-full transition-transform duration-300 ease-out group-hover:-translate-y-full motion-reduce:transition-none"
-        >
-          {{ link.label }}
-        </span>
-      </span>
-      <span aria-hidden="true" class="text-dimmed">)</span>
+      <span
+        aria-hidden="true"
+        class="text-dimmed group-hover:text-primary group-focus-visible:text-primary"
+        >(</span
+      ><span class="px-px">{{ link.label }}</span
+      ><span
+        aria-hidden="true"
+        class="text-dimmed group-hover:text-primary group-focus-visible:text-primary"
+        >)</span
+      >
     </NuxtLink>
   </nav>
 </template>
