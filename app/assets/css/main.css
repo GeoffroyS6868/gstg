@@ -3,18 +3,81 @@
 
 @theme {
   --font-sans:
-    "Inter", ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji",
+    "Geist", ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji",
     "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   --font-serif:
     "Instrument Serif", ui-serif, Georgia, Cambria, "Times New Roman", Times,
     serif;
+  --font-mono:
+    "Geist Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
 }
 
 :root {
   --ui-bg: var(--color-zinc-50);
-  --ui-radius: 0.75rem;
+  --ui-radius: 0.375rem;
 }
 
 .dark {
-  --ui-bg: var(--color-zinc-950);
+  --ui-bg: #09090b;
+}
+
+html {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: color-mix(in oklab, var(--ui-primary) 35%, transparent);
+}
+
+@utility hatch {
+  background-image: repeating-linear-gradient(
+    -45deg,
+    currentColor 0 1px,
+    transparent 1px 6px
+  );
+  mask-image: linear-gradient(to right, black 40%, transparent);
+}
+
+@utility leader {
+  border-bottom: 1px dotted currentColor;
+  translate: 0 -0.3em;
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    filter: blur(6px);
+    translate: 0 8px;
+  }
+}
+
+@utility rise {
+  animation: rise 700ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation-delay: calc(var(--rise-step, 0) * 90ms);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rise {
+    animation: none;
+  }
+}
+
+@keyframes pop {
+  from {
+    opacity: 0;
+    scale: 0.2;
+  }
+}
+
+@utility pop {
+  animation: pop 500ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation-delay: calc(450ms + var(--pop-step, 0) * 14ms);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pop {
+    animation: none;
+  }
 }
