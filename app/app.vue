@@ -15,11 +15,12 @@ useHead({
 
 useSeoMeta({
   applicationName: "Geoffroy Stanger",
-  description: "Software Engineer at Join.",
-  ogDescription: "Software Engineer at Join.",
-  ogImage: "https://gstg.fr/gstg.svg",
+  description: "Software Engineer at Join Stories.",
+  ogDescription: "Software Engineer at Join Stories.",
+  ogImage: "https://gstg.fr/og.png",
   ogImageAlt: "Geoffroy Stanger",
   ogImageHeight: 630,
+  ogImageType: "image/png",
   ogImageWidth: 1200,
   ogTitle: "Geoffroy Stanger",
   ogType: "website",
@@ -27,7 +28,8 @@ useSeoMeta({
   robots: "index, follow",
   title: "Geoffroy Stanger",
   twitterCard: "summary_large_image",
-  twitterDescription: "Software Engineer at Join.",
+  twitterDescription: "Software Engineer at Join Stories.",
+  twitterImage: "https://gstg.fr/og.png",
   twitterTitle: "Geoffroy Stanger",
 });
 </script>

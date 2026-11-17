@@ -1,88 +1,158 @@
 <script lang="ts" setup>
-interface Experience {
-  company: string;
-  companyUrl: string;
-  date: string;
-  title: string;
-}
+const { active, first, now, rows, shownUntil } = useCareer();
+const { phase } = useRewind();
 
-const experiences: Experience[] = [
-  {
-    company: "Join Stories",
-    companyUrl: "https://join-stories.com",
-    date: "November 2025 - Present",
-    title: "Software Engineer",
-  },
-  {
-    company: "Gojob",
-    companyUrl: "https://www.gojob.com",
-    date: "March 2025 - August 2025",
-    title: "Software Engineer Intern",
-  },
-  {
-    company: "Schaeffer Productique",
-    companyUrl: "https://www.schaeffer-productique.com",
-    date: "September 2024 - February 2025",
-    title: "Frontend Engineer Intern",
-  },
-  {
-    company: "Final Advanced Materials",
-    companyUrl: "https://www.final-materials.com",
-    date: "May 2024 - August 2024",
-    title: "Software Engineer Intern",
-  },
-  {
-    company: "Kiwi Backup",
-    companyUrl: "https://www.kiwi-backup.com",
-    date: "April 2023 - July 2023",
-    title: "Go Developer Intern",
-  },
-  {
-    company: "Systancia",
-    companyUrl: "https://www.systancia.com",
-    date: "October 2022 - March 2023",
-    title: "Python Developer Intern",
-  },
-  {
-    company: "Kiwi Backup",
-    companyUrl: "https://www.kiwi-backup.com",
-    date: "August 2021 - December 2021",
-    title: "Go Developer Intern",
-  },
-];
+const LAST_MONTH_OFFSET = MONTHS_PER_YEAR - 1;
+
+const columns = computed(() => now.value - first.value + 1);
+const months = computed(() =>
+  Array.from({ length: columns.value }, (_, index) => first.value + index)
+);
+
+/** Roles that had started by the month shown. */
+const shownRows = computed(() =>
+  rows.value.filter((row) => row.from <= shownUntil.value)
+);
+const totalMonths = computed(() =>
+  shownRows.value.reduce(
+    (sum, row) => sum + Math.min(row.to, shownUntil.value) - row.from + 1,
+    0
+  )
+);
+const totalYears = computed(() =>
+  (totalMonths.value / MONTHS_PER_YEAR).toFixed(1)
+);
+
+const years = computed(() => {
+  const firstYear = Math.floor(first.value / MONTHS_PER_YEAR);
+  const lastYear = Math.floor(now.value / MONTHS_PER_YEAR);
+  return Array.from({ length: lastYear - firstYear + 1 }, (_, index) => {
+    const year = firstYear + index;
+    const start = Math.max(first.value, year * MONTHS_PER_YEAR);
+    const end = Math.min(now.value, year * MONTHS_PER_YEAR + LAST_MONTH_OFFSET);
+    return {
+      century: String(year).slice(0, 2),
+      column: start - first.value + 1,
+      short: String(year).slice(2),
+      span: end - start + 1,
+      year,
+    };
+  });
+});
+
+const gridStyle = computed(() => ({
+  gridTemplateColumns: `repeat(${columns.value}, minmax(0, 1fr))`,
+}));
+
+/** The entrance pops only once; after that, cells morph as time moves. */
+const hasEntered = ref(false);
+watch(phase, () => {
+  hasEntered.value = true;
+});
+
+/** Where the playhead sits over the matrix while time is rewound. */
+const playhead = computed(() => {
+  if (phase.value === "present" || shownUntil.value < first.value) {
+    return null;
+  }
+  return {
+    left: `${((shownUntil.value - first.value + 1) / columns.value) * 100}%`,
+  };
+});
+
+type Row = (typeof rows.value)[number];
+
+const cellClass = (row: Row, month: number): string => {
+  const isFilled =
+    month >= row.from && month <= Math.min(row.to, shownUntil.value);
+  if (!isFilled) {
+    return "scale-[0.3] rounded-full bg-(--ui-text-dimmed) opacity-50";
+  }
+  const isHighlighted =
+    active.value === null ? row.isCurrent : active.value === row.key;
+  const entrance = hasEntered.value ? "" : "pop";
+  if (isHighlighted) {
+    return `${entrance} rounded-[1.5px] bg-primary`;
+  }
+  if (active.value === null) {
+    return `${entrance} rounded-[1.5px] bg-(--ui-text-muted)`;
+  }
+  return `${entrance} rounded-[1.5px] bg-(--ui-text-dimmed) opacity-40`;
+};
 </script>
 
 <template>
-  <section class="flex w-full flex-col gap-8">
-    <h2 class="font-serif text-3xl font-normal tracking-tight">Work</h2>
-    <div class="flex flex-col gap-4">
+  <Frame label="Work">
+    <div aria-hidden="true" class="mb-6 select-none">
       <div
-        v-for="experience in experiences"
-        :key="`${experience.company}-${experience.date}`"
-        class="flex flex-col md:gap-2 md:flex-row md:items-baseline md:justify-between"
+        class="text-dimmed mb-2 grid font-mono text-[10px]"
+        :style="gridStyle"
       >
-        <div class="flex flex-row flex-wrap gap-2 items-baseline">
-          <NuxtLink
-            :to="experience.companyUrl"
-            external
-            rel="noopener"
-            target="_blank"
-            class="group"
-          >
-            <span
-              class="font-sans font-semibold text-md group-hover:text-primary"
-            >
-              {{ experience.company }}
-            </span>
-          </NuxtLink>
-          <span class="font-sans font-medium text-sm text-muted">
-            {{ experience.title }}
-          </span>
+        <span
+          v-for="segment in years"
+          :key="segment.year"
+          class="border-accented overflow-hidden border-l pl-1 whitespace-nowrap"
+          :style="{ gridColumn: `${segment.column} / span ${segment.span}` }"
+        >
+          <span class="hidden sm:inline">{{ segment.century }}</span
+          >{{ segment.short }}
+        </span>
+      </div>
+      <div class="relative flex flex-col gap-[3px]">
+        <div
+          v-for="row in rows"
+          :key="row.key"
+          class="grid gap-[2px]"
+          :style="gridStyle"
+        >
+          <span
+            v-for="month in months"
+            :key="month"
+            class="aspect-square"
+            :class="[
+              cellClass(row, month),
+              {
+                'transition-[background-color,opacity,scale,border-radius] duration-150':
+                  phase !== 'present',
+              },
+            ]"
+            :style="{ '--pop-step': month - first }"
+          />
         </div>
-        <span class="font-sans shrink-0 text-sm text-dimmed">
-          {{ experience.date }}
+        <span
+          v-if="playhead"
+          class="bg-primary absolute -inset-y-1 w-px"
+          :style="playhead"
+        />
+      </div>
+      <div
+        class="text-dimmed mt-3 flex justify-between gap-4 font-mono text-[11px] uppercase tabular-nums"
+      >
+        <span>{{ shownRows.length }} roles · {{ totalYears }} years</span>
+        <span class="flex items-center gap-3">
+          <span class="flex items-center gap-1.5">
+            <span class="bg-primary size-2 rounded-[1.5px]" />now
+          </span>
+          <span class="flex items-center gap-1.5">
+            <span class="size-2 rounded-[1.5px] bg-(--ui-text-muted)" />past
+          </span>
         </span>
       </div>
     </div>
-  </section>
+    <TransitionGroup tag="ol" name="rewind" class="flex flex-col">
+      <LinkRow
+        v-for="row in shownRows"
+        :key="row.key"
+        :to="row.url"
+        :title="row.company"
+        :description="row.role"
+        :meta="row.period"
+        :dot-class="row.isCurrent ? 'bg-primary' : 'bg-(--ui-text-dimmed)'"
+        @mouseenter="active = row.key"
+        @mouseleave="active = null"
+        @focusin="active = row.key"
+        @focusout="active = null"
+      />
+    </TransitionGroup>
+  </Frame>
 </template>

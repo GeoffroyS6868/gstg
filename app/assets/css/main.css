@@ -3,18 +3,134 @@
 
 @theme {
   --font-sans:
-    "Inter", ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji",
+    "Geist", ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji",
     "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   --font-serif:
     "Instrument Serif", ui-serif, Georgia, Cambria, "Times New Roman", Times,
     serif;
+  --font-mono:
+    "Geist Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
 }
 
 :root {
   --ui-bg: var(--color-zinc-50);
-  --ui-radius: 0.75rem;
+  --ui-radius: 0.375rem;
 }
 
 .dark {
-  --ui-bg: var(--color-zinc-950);
+  --ui-bg: #09090b;
+}
+
+/* Roles leave and come back as the timeline is rewound (Work.vue). */
+.rewind-enter-active,
+.rewind-leave-active {
+  overflow: hidden;
+  transition:
+    opacity 160ms ease,
+    max-height 220ms cubic-bezier(0.4, 0, 0.2, 1),
+    translate 220ms cubic-bezier(0.3, 1.4, 0.5, 1);
+}
+
+.rewind-enter-from,
+.rewind-leave-to {
+  max-height: 0;
+  opacity: 0;
+  translate: -12px 0;
+}
+
+/* Taller than any row, wrapped on a phone included, so it never clips one. */
+.rewind-enter-to,
+.rewind-leave-from {
+  max-height: 6rem;
+}
+
+/* The theme switch reveals itself in a growing circle (useThemeReveal), not a crossfade. */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+
+html {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  scrollbar-color: var(--ui-border-accented) transparent;
+  scrollbar-width: thin;
+}
+
+/* Safari ignores scrollbar-color, so it gets the same thin thumb this way. */
+@supports not (scrollbar-color: auto) {
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    border: 2px solid transparent;
+    border-radius: 8px;
+    background: var(--ui-border-accented) padding-box;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background-color: var(--ui-text-dimmed);
+  }
+}
+
+::selection {
+  background: color-mix(in oklab, var(--ui-primary) 35%, transparent);
+}
+
+@utility hatch {
+  background-image: repeating-linear-gradient(
+    -45deg,
+    currentColor 0 1px,
+    transparent 1px 6px
+  );
+}
+
+@utility leader {
+  border-bottom: 1px dotted currentColor;
+  translate: 0 -0.3em;
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    filter: blur(6px);
+    translate: 0 8px;
+  }
+}
+
+@utility rise {
+  animation: rise 700ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation-delay: calc(var(--rise-step, 0) * 90ms);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rise {
+    animation: none;
+  }
+}
+
+@keyframes pop {
+  from {
+    opacity: 0;
+    scale: 0.2;
+  }
+}
+
+@utility pop {
+  animation: pop 500ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation-delay: calc(450ms + var(--pop-step, 0) * 14ms);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pop {
+    animation: none;
+  }
 }
